@@ -54,9 +54,7 @@ workflows:
   build_scan:
     jobs:
       - build:
-        filters:
-          branches:
-            only: master
+
       - scan:
         requires:
           - build
