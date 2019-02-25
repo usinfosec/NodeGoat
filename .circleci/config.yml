@@ -73,7 +73,8 @@ jobs:
             wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.2.5.6/vosp-api-wrappers-java-19.2.5.6.jar -O VeracodeJavaAPI.jar
             chmod 755 VeracodeJavaAPI.jar
             ls -al
-      
+            java -version
+                  
       # upload for scanning
       - run:
           name: "test env vars"
