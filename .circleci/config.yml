@@ -46,3 +46,14 @@ jobs:
     steps:
       - run: ls            
       - run: zip -r upload.zip working
+      - run: ls
+      
+workflows:
+  version: 2
+  
+  build_scan:
+    jobs:
+      - build
+      - scan:
+        requires:
+          - build
