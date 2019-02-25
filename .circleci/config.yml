@@ -48,7 +48,7 @@ jobs:
   # job to upload to Veracode for scanning
   veracode_scan:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/openJDK:11.0.2-jdk
       
     working_directory: ~/repo
     
@@ -74,7 +74,7 @@ jobs:
             chmod 755 VeracodeJavaAPI.jar
             ls -al
             java -version
-                  
+
       # upload for scanning
       - run:
           name: "test env vars"
