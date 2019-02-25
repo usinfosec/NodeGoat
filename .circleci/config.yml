@@ -59,7 +59,7 @@ jobs:
           
       # 'package' for uploading to Veracode
       - run: ls -l           
-      - run: ls -al app
+      - run: ls -al nodegoat
       - run: zip -r upload.zip nodegoat
       - run: ls -l
       
