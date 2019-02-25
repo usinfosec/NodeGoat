@@ -58,12 +58,21 @@ jobs:
           at: .
           
       # 'package' for uploading to Veracode
-      - run: ls -l           
-      - run: ls -al nodegoat
-      - run: zip -r upload.zip nodegoat
-      - run: ls -l
+      - run: 
+          name: "package for upload to Veracode"
+          command: |
+            ls -l           
+            ls -al nodegoat
+            zip -r upload.zip nodegoat
+            ls -l
       
       # grab the Veracode agent
+      - run:
+          name: "Get the Veracode agent"
+          command: |
+            wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.2.5.6/vosp-api-wrappers-java-17.11.4.9.jar -O VeracodeJavaAPI.jar
+            chmod 755 VeracodeJavaAPI.jar
+            ls -al
       
       # upload for scanning
       - run:
