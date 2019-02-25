@@ -54,7 +54,7 @@ workflows:
     jobs:
       - build
       - veracode_scan:
-        requires:
-          - build
+          requires:
+            - build
 
 
