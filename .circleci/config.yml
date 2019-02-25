@@ -53,7 +53,5 @@ workflows:
   
   build_scan:
     jobs:
-      - build:
-      - scan:
-        requires:
-          - build
+      - build
+
