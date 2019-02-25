@@ -50,9 +50,9 @@ jobs:
       
 workflows:
   version: 2
-  
-  build_scan:
+  build_and_scan:
     jobs:
-      - scan:
+      - build
+      - scan
 
 
