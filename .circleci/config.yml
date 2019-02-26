@@ -27,9 +27,6 @@ jobs:
             - v1-dependencies-
 
       - run: yarn install
-      
-#      - run: pwd
-#      - run: ls -l
 
       - save_cache:
           paths:
@@ -47,6 +44,8 @@ jobs:
       
   # job to upload to Veracode for scanning
   veracode_scan:
+
+    # use a java-based image to run the Veracode API wrapper
     docker:
       - image: circleci/openjdk:11.0.2-jdk
       
@@ -60,11 +59,7 @@ jobs:
       # 'package' for uploading to Veracode
       - run: 
           name: "Package for upload to Veracode"
-          command: |
-            #ls -l           
-            #ls -al nodegoat
-            zip -r upload.zip nodegoat
-            #ls -l
+          command: zip -r upload.zip nodegoat
       
       # grab the Veracode agent
       - run:
@@ -74,6 +69,7 @@ jobs:
             #chmod 755 VeracodeJavaAPI.jar
 
       # upload for scanning
+      # env vars are used to pass login creds and set the scan name
       - run:
           name: "Upload to Veracode"
           command: java -jar VeracodeJavaAPI.jar 
@@ -85,6 +81,7 @@ jobs:
               -version CircleCI-$CIRCLE_BUILD_NUM 
               -filepath upload.zip
       
+# serial jobs - need to run 'build' before 'scan'
 workflows:
   version: 2
   build_and_scan:
