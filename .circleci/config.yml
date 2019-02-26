@@ -78,7 +78,7 @@ jobs:
       # upload for scanning
       - run:
           name: "Upload to Veracode"
-          command: java -jar VeracodeJavaAPI.jar -vid $VERACODE_API_ID -vkey VERACODE_API_KEY -action uploadandscan -appname VERACODE_APP_NAME -createprofile false -version CircleCI-$CIRCLECI_BUILD_NUM -filepath upload.zip
+          command: java -jar VeracodeJavaAPI.jar -vid $VERACODE_API_ID -vkey $VERACODE_API_KEY -action uploadandscan -appname $VERACODE_APP_NAME -createprofile false -version CircleCI-$CIRCLECI_BUILD_NUM -filepath upload.zip
       
 workflows:
   version: 2
