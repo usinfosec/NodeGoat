@@ -59,7 +59,7 @@ jobs:
           
       # 'package' for uploading to Veracode
       - run: 
-          name: "package for upload to Veracode"
+          name: "Package for upload to Veracode"
           command: |
             ls -l           
             ls -al nodegoat
@@ -71,20 +71,14 @@ jobs:
           name: "Get the Veracode agent"
           command: |
             wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.2.5.6/vosp-api-wrappers-java-19.2.5.6.jar -O VeracodeJavaAPI.jar
-            chmod 755 VeracodeJavaAPI.jar
+            #chmod 755 VeracodeJavaAPI.jar
             ls -al
             java -version
 
       # upload for scanning
       - run:
-          name: "test env vars"
-          command: |
-            echo App Name: $VERACODE_APP_NAME
-            echo API ID:  $VERACODE_API_ID
-
-      - run:
           name: "Upload to Veracode"
-          command: echo Veracode upload
+          command: java -jar VeracodeJavaAPI.jar -vid $VERACODE_API_ID -vkey VERACODE_API_KEY -action uploadandscan -appname VERACODE_APP_NAME -createprofile false -version CircleCI-$CIRCLECI_BUILD_NUM -filepath upload.zip
       
 workflows:
   version: 2
