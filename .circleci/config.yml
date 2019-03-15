@@ -108,7 +108,7 @@ jobs:
           name: "Run Greenlight scan"
           command: java -jar gl-scanner-java.jar
               --api_id $VERACODE_API_ID
-              --api_secret_key $VERACODE_API_SECRET
+              --api_secret_key $VERACODE_API_KEY
               --source_dir "nodegoat/app"
 
 # serial jobs - need to run 'build' before 'scan'
