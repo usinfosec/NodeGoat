@@ -102,6 +102,8 @@ jobs:
           command: |
             curl -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip
             unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar
+            pwd
+            ls
 
       # run Greenlight
       - run:
