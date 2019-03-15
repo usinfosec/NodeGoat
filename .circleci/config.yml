@@ -81,13 +81,44 @@ jobs:
               -version CircleCI-$CIRCLE_BUILD_NUM 
               -filepath upload.zip
       
+
+  # job to run the Veracode Greenlight scan
+  greenlight_scan:
+
+    # use a java-based image to run the Veracode API wrapper
+    docker:
+      - image: circleci/openjdk:11.0.2-jdk
+      
+    working_directory: ~/repo
+    
+    steps:
+      # get the files from the previous job
+      - attach_workspace:
+          at: .
+          
+      # get the Greenlight tool
+      - run:
+          name: "Get the Greenlight tool"
+          command: |
+            curl -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip
+            unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar
+
+      # run Greenlight
+      - run:
+          name: "Run Greenlight scan"
+          command: java -jar gl-scanner-java.jar
+              --api_id $VERACODE_API_ID
+              --api_secret_key $VERACODE_API_SECRET
+              --source_dir "nodegoat/app"
+
 # serial jobs - need to run 'build' before 'scan'
 workflows:
   version: 2
   build_and_scan:
     jobs:
       - build
-      - veracode_scan:
+#      - veracode_scan:
+      - greenlight_scan:
           requires:
             - build
 
