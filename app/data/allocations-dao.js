@@ -27,7 +27,7 @@ function AllocationsDAO(db) {
             bonds: bonds
         };
 
-        allocationsCol.update({
+        allocationsCol.update ({
             userId: parsedUserId
         }, allocations, {
             upsert: true
