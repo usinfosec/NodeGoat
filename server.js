@@ -28,7 +28,7 @@ var httpsOptions = {
 };
 */
 
-MongoClient.connect (config.db, function(err, db) {
+MongoClient.connect(config.db, function(err, db) {
     if (err) {
         console.log("Error: DB: connect");
         console.log(err);
