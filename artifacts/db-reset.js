@@ -32,7 +32,7 @@ var USERS_TO_INSERT = [
         "firstName": "Will",
         "lastName": "Smith",
         "benefitStartDate": "2025-11-30",
-        "password": "User2_123"
+        "password":  "User2_123"
             //"password" : "$2a$10$Tlx2cNv15M0Aia7wyItjsepeA8Y6PyBYaNdQqvpxkIUlcONf1ZHyq", // User2_123
     }];
 
