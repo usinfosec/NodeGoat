@@ -18,3 +18,9 @@ Icon?
 
 # Zap output
 report*.html
+
+# Eclipse stuff
+.project/*
+
+# Greenlight results
+results.json
