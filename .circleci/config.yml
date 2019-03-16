@@ -120,9 +120,10 @@ workflows:
   build_and_scan:
     jobs:
       - build
-#      - veracode_scan:
       - greenlight_scan:
           requires:
             - build
-
+      - veracode_scan:
+          requires:
+            - greenlight_scan
 
