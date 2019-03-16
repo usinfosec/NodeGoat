@@ -59,7 +59,8 @@ jobs:
       # 'package' for uploading to Veracode
       - run: 
           name: "Package for upload to Veracode"
-          command: zip -r upload.zip nodegoat
+          #command: zip -r upload.zip nodegoat
+          command: zip -r upload.zip nodegoat -x *node_modules/*
       
       # grab the Veracode agent
       - run:
