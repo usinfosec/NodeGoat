@@ -111,7 +111,7 @@ jobs:
           command: java -jar gl-scanner-java.jar
               --api_id $VERACODE_API_ID
               --api_secret_key $VERACODE_API_KEY
-              --git nodegoat
+              --git_dir nodegoat
               --source_dir "., app, app/data, app/routes"
 
 # serial jobs - need to run 'build' before 'scan'
