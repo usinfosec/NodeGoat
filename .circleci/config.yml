@@ -82,6 +82,10 @@ jobs:
               -version CircleCI-$CIRCLE_BUILD_NUM 
               -filepath upload.zip
 
+      - run:
+          name: "SourceClear scan"
+          command: curl -sSL https://download.sourceclear.com/ci.sh | bash
+
 # serial jobs - need to run 'build' before 'scan'
 workflows:
   version: 2
