@@ -82,6 +82,20 @@ jobs:
               -version CircleCI-$CIRCLE_BUILD_NUM 
               -filepath upload.zip
 
+  # job to upload to Veracode for scanning
+  srcclr_scan:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+
+    working_directory: ~/repo
+
+    steps:
+      # get the files from the previous job
+      - attach_workspace:
+          at: .
+
+      # download and run SourceClear scanner
       - run:
           name: "SourceClear scan"
           command: |
@@ -95,6 +109,9 @@ workflows:
     jobs:
       - build
       - veracode_scan:
+          requires:
+            - build
+      - srcclr_scan:
           requires:
             - build
 
